@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import heroPhoto from "../img/WhatsApp Image 2026-03-23 at 23.05.52 (1).jpeg";
-import galleryPhotoTwo from "../img/WhatsApp Image 2026-03-23 at 23.05.52 (2).jpeg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 48 },
@@ -79,13 +78,6 @@ const events = [
   },
 ];
 
-const moments = [
-  "Haldi carnival colors",
-  "Pool party energy",
-  "Sangeet performances",
-  "Grand Varwala evening",
-];
-
 const marqueeItems = [
   "6 July Check-in",
   "Haldi Carnival",
@@ -104,18 +96,6 @@ const mapsUrl =
   "https://www.google.com/maps/search/?api=1&query=JMD+Resort+Mandu,+325%2F1,+gram,+Sulibardi,+Nalchha,+Madhya+Pradesh+454010";
 const rsvpEndpoint = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 const heroImage = heroPhoto;
-const galleryImages = [
-  {
-    src: heroPhoto,
-    title: "Together In Celebration",
-    className: "gallery-panel tall",
-  },
-  {
-    src: galleryPhotoTwo,
-    title: "Moments Before Forever",
-    className: "gallery-panel wide",
-  },
-];
 
 const details = [
   {
@@ -323,7 +303,6 @@ export default function App() {
         <nav className="topnav">
           <a href="#story">Story</a>
           <a href="#events">Events</a>
-          <a href="#gallery">Gallery</a>
           <a href="#rsvp">RSVP</a>
         </nav>
       </header>
@@ -545,53 +524,6 @@ export default function App() {
                 <p>{detail.label}</p>
                 <h3>{detail.value}</h3>
               </motion.article>
-            ))}
-          </div>
-        </motion.section>
-
-        <motion.section
-          id="gallery"
-          className="section gallery-section"
-        >
-          <div className="section-heading">
-            <p className="eyebrow">Celebration Mood</p>
-            <h2>A blend of festive colors, poolside fun, grand rituals, and elegant wedding nights.</h2>
-          </div>
-          <div className="gallery-grid">
-            {galleryImages.map((image, index) => (
-              <motion.div
-                key={image.src}
-                className={image.className}
-                variants={fadeUp}
-                custom={0.05 + index * 0.1}
-                {...revealOnScroll}
-              >
-                <img src={image.src} alt={image.title} className="gallery-photo" />
-                <div className="panel-overlay" />
-                <span>{image.title}</span>
-              </motion.div>
-            ))}
-            <motion.div
-              className="gallery-quote glass-card"
-              variants={fadeUp}
-              custom={0.28}
-              {...revealOnScroll}
-            >
-              <p className="eyebrow">Our Promise</p>
-              <h3>Two hearts, one beautiful celebration, and a lifetime of togetherness ahead.</h3>
-            </motion.div>
-            <motion.div
-              className="gallery-quote soft"
-              variants={fadeUp}
-              custom={0.38}
-              {...revealOnScroll}
-            >
-              <p>From joyful rituals to quiet glances, every frame now carries our story.</p>
-            </motion.div>
-          </div>
-          <div className="moment-strip">
-            {moments.map((moment) => (
-              <span key={moment}>{moment}</span>
             ))}
           </div>
         </motion.section>

@@ -354,7 +354,6 @@ main {
 
 .hero-card,
 .glass-card,
-.gallery-panel,
 .rsvp-panel {
   backdrop-filter: blur(18px);
 }
@@ -399,14 +398,11 @@ main {
 }
 
 .portrait-photo,
-.gallery-photo {
+.portrait-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.portrait-photo {
   position: absolute;
   inset: 0;
 }
@@ -746,93 +742,6 @@ main {
   line-height: 1.08;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: 1.05fr 1.05fr 0.9fr;
-  grid-auto-rows: 14rem;
-  gap: 1rem;
-}
-
-.gallery-panel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1.8rem;
-  background: linear-gradient(120deg, #9f5f53 0%, #d2a56f 54%, #f0d9b5 100%);
-  box-shadow: var(--shadow);
-}
-
-.gallery-panel.tall {
-  grid-row: span 2;
-}
-
-.gallery-panel.wide {
-  grid-column: span 2;
-}
-
-.gallery-quote {
-  padding: 1.5rem;
-  background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.5), transparent 28%),
-    linear-gradient(160deg, rgba(255, 249, 241, 0.92), rgba(238, 223, 202, 0.78));
-}
-
-.gallery-quote h3 {
-  margin: 0;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2rem;
-  line-height: 1.08;
-}
-
-.gallery-quote.soft {
-  display: flex;
-  align-items: end;
-  padding: 1.5rem;
-  border-radius: 1.8rem;
-  background: rgba(255, 250, 244, 0.68);
-  border: 1px solid rgba(90, 59, 42, 0.1);
-  color: var(--muted);
-  box-shadow: var(--shadow);
-}
-
-.gallery-quote.soft p {
-  margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.8;
-}
-
-.panel-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(0deg, rgba(40, 20, 14, 0.55), transparent 48%),
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.22), transparent 28%);
-}
-
-.gallery-panel span {
-  position: absolute;
-  left: 1.25rem;
-  bottom: 1.15rem;
-  z-index: 1;
-  color: #fff9f5;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2rem;
-}
-
-.moment-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.moment-strip span {
-  padding: 0.85rem 1rem;
-  border-radius: 999px;
-  background: rgba(255, 249, 243, 0.62);
-  border: 1px solid rgba(95, 62, 45, 0.12);
-  color: var(--muted);
-}
-
 .rsvp-panel {
   padding: clamp(1.5rem, 4vw, 3rem);
   background:
@@ -1010,7 +919,6 @@ main {
   .section,
   .split-heading,
   .story-grid,
-  .gallery-grid,
   .rsvp-form,
   .promise-layout,
   .details-grid,
@@ -1030,16 +938,6 @@ main {
 
   .hero h1 {
     max-width: none;
-  }
-
-  .gallery-grid {
-    grid-auto-rows: 12rem;
-  }
-
-  .gallery-panel.tall,
-  .gallery-panel.wide {
-    grid-column: auto;
-    grid-row: auto;
   }
 }
 
