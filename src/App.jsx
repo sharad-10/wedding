@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import heroPhoto from "../img/WhatsApp Image 2026-03-23 at 23.05.52 (1).jpeg";
+import galleryPhotoTwo from "../img/WhatsApp Image 2026-03-23 at 23.05.52 (2).jpeg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 48 },
@@ -31,7 +33,7 @@ const storySteps = [
   },
   {
     title: "The Yes",
-    text: "One unforgettable question, a thousand happy tears, and the decision to build a forever together.",
+    text: "One unforgettable question, a thousand happy tears, and the promise of forever together.",
   },
 ];
 
@@ -47,20 +49,20 @@ const events = [
       "Haldi carnival begins at 2:00 PM with lunch and festive celebrations.",
       "Pool party continues through the afternoon until around 6:00 PM.",
       "Guests return to their rooms to relax and refresh before the evening.",
-      "Ring ceremony begins at 9:00 PM, followed by sangeet, dances, and dinner.",
+      "The ring ceremony begins at 9:00 PM, followed by Sangeet, dances, and dinner.",
     ],
   },
   {
     day: "Day 2",
     date: "7 July",
-    title: "Sagan, Rajasthani Thali Lunch, Pheras, Warmala & Wedding Dinner",
+    title: "Sagan, Rajasthani Thali Lunch, Pheras, Varwala & Wedding Dinner",
     time: "Morning to evening",
     place: "Traditional rituals and the grand wedding celebration",
     items: [
       "Morning begins with Sagan and family rituals.",
       "A Rajasthani thali lunch is served for all our guests.",
-      "Bride and groom pheras take place in the afternoon.",
-      "A grand warmala ceremony is planned for the evening.",
+      "The bride and groom's pheras take place in the afternoon.",
+      "A grand Varwala ceremony is planned for the evening.",
       "The celebrations conclude with a grand wedding dinner.",
     ],
   },
@@ -81,7 +83,7 @@ const moments = [
   "Haldi carnival colors",
   "Pool party energy",
   "Sangeet performances",
-  "Grand warmala evening",
+  "Grand Varwala evening",
 ];
 
 const marqueeItems = [
@@ -91,7 +93,7 @@ const marqueeItems = [
   "Ring Ceremony",
   "Sangeet Night",
   "7 July Pheras",
-  "Grand Warmala",
+  "Grand Varwala",
   "Wedding Dinner",
   "8 July Farewell",
 ];
@@ -101,15 +103,15 @@ const venueAddress = "325/1, gram, Sulibardi, Nalchha, Madhya Pradesh 454010";
 const mapsUrl =
   "https://www.google.com/maps/search/?api=1&query=JMD+Resort+Mandu,+325%2F1,+gram,+Sulibardi,+Nalchha,+Madhya+Pradesh+454010";
 const rsvpEndpoint = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
-const heroImage = "/img/WhatsApp Image 2026-03-23 at 23.05.52 (1).jpeg";
+const heroImage = heroPhoto;
 const galleryImages = [
   {
-    src: "/img/WhatsApp Image 2026-03-23 at 23.05.52 (1).jpeg",
+    src: heroPhoto,
     title: "Together In Celebration",
     className: "gallery-panel tall",
   },
   {
-    src: "/img/WhatsApp Image 2026-03-23 at 23.05.52 (2).jpeg",
+    src: galleryPhotoTwo,
     title: "Moments Before Forever",
     className: "gallery-panel wide",
   },
@@ -122,7 +124,7 @@ const details = [
   },
   {
     label: "Day 1 Flow",
-    value: "Breakfast, haldi carnival, lunch, pool party, rest, ring ceremony and sangeet",
+    value: "Breakfast, Haldi carnival, lunch, pool party, rest, ring ceremony, and Sangeet",
   },
   {
     label: "Farewell",
@@ -131,10 +133,10 @@ const details = [
 ];
 
 const promises = [
-  "A joyful haldi carnival and poolside celebration",
-  "A sparkling ring ceremony and dance-filled sangeet night",
+  "A joyful Haldi carnival and poolside celebration",
+  "A sparkling ring ceremony and dance-filled Sangeet night",
   "Traditional rituals with a Rajasthani thali lunch",
-  "A grand warmala and unforgettable wedding dinner",
+  "A grand Varwala and unforgettable wedding dinner",
 ];
 
 export default function App() {
@@ -344,8 +346,8 @@ export default function App() {
             <h1>Three days of love, rituals, music, and celebration.</h1>
             <p className="hero-text">
               Join us from 6 to 8 July for our destination wedding celebration,
-              from check-in breakfast and haldi carnival to sangeet night,
-              pheras, warmala, wedding dinner, and a heartfelt farewell.
+              from check-in breakfast and Haldi carnival to Sangeet night,
+              pheras, Varwala, wedding dinner, and a heartfelt farewell.
             </p>
             <div className="hero-meta">
               <div>
@@ -553,7 +555,7 @@ export default function App() {
         >
           <div className="section-heading">
             <p className="eyebrow">Celebration Mood</p>
-            <h2>A blend of festive color, poolside fun, grand rituals, and elegant wedding nights.</h2>
+            <h2>A blend of festive colors, poolside fun, grand rituals, and elegant wedding nights.</h2>
           </div>
           <div className="gallery-grid">
             {galleryImages.map((image, index) => (
@@ -648,7 +650,7 @@ export default function App() {
                   required
                 >
                   <option value="" disabled>
-                    Willing to dance at sangeet?
+                    Willing to dance at Sangeet?
                   </option>
                   <option>Yes, absolutely</option>
                   <option>Maybe, tell me more</option>
@@ -685,7 +687,7 @@ export default function App() {
                 <div className="countdown-card">
                   <span>Wedding Invitation</span>
                   <strong>6 to 8 July 2026</strong>
-                  <p>Join us for haldi, pool party, ring ceremony, sangeet, pheras, warmala, wedding dinner, and a heartfelt farewell.</p>
+                  <p>Join us for Haldi, the pool party, the ring ceremony, Sangeet, pheras, Varwala, wedding dinner, and a heartfelt farewell.</p>
                   <a
                     href={mapsUrl}
                     target="_blank"
