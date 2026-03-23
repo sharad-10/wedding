@@ -100,6 +100,7 @@ const venueName = "JMD Resort Mandu";
 const venueAddress = "325/1, gram, Sulibardi, Nalchha, Madhya Pradesh 454010";
 const mapsUrl =
   "https://www.google.com/maps/search/?api=1&query=JMD+Resort+Mandu,+325%2F1,+gram,+Sulibardi,+Nalchha,+Madhya+Pradesh+454010";
+const rsvpEndpoint = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
 const details = [
   {
@@ -125,6 +126,16 @@ const promises = [
 
 export default function App() {
   const [musicOn, setMusicOn] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitState, setSubmitState] = useState({ type: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    attendance: "",
+    dance: "",
+    guestCount: "",
+    note: "",
+  });
   const audioContextRef = useRef(null);
   const intervalRef = useRef(null);
   const stepRef = useRef(0);
@@ -217,6 +228,66 @@ export default function App() {
     }
 
     await startMusic();
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!rsvpEndpoint) {
+      setSubmitState({
+        type: "error",
+        message:
+          "RSVP is not connected yet. Add your Google Sheets script URL to enable submissions.",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitState({ type: "", message: "" });
+
+    try {
+      await fetch(rsvpEndpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify({
+          ...formData,
+          guestCount: Number(formData.guestCount || 0),
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      setSubmitState({
+        type: "success",
+        message: "Thank you. Your RSVP has been saved successfully.",
+      });
+      setFormData({
+        name: "",
+        phone: "",
+        attendance: "",
+        dance: "",
+        guestCount: "",
+        note: "",
+      });
+    } catch (error) {
+      setSubmitState({
+        type: "error",
+        message:
+          "We could not save the RSVP right now. Please try again in a moment.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -532,10 +603,29 @@ export default function App() {
               memorable celebration for everyone joining us.
             </p>
             <div className="rsvp-layout">
-              <form className="rsvp-form">
-                <input type="text" placeholder="Your name" />
-                <input type="tel" placeholder="Phone number" />
-                <select defaultValue="">
+              <form className="rsvp-form" onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+                <select
+                  name="attendance"
+                  value={formData.attendance}
+                  onChange={handleChange}
+                  required
+                >
                   <option value="" disabled>
                     Will you attend?
                   </option>
@@ -543,7 +633,12 @@ export default function App() {
                   <option>Joining virtually</option>
                   <option>Sending love from afar</option>
                 </select>
-                <select defaultValue="">
+                <select
+                  name="dance"
+                  value={formData.dance}
+                  onChange={handleChange}
+                  required
+                >
                   <option value="" disabled>
                     Willing to dance at sangeet?
                   </option>
@@ -553,13 +648,26 @@ export default function App() {
                 </select>
                 <input
                   type="number"
+                  name="guestCount"
                   min="1"
                   placeholder="How many members are expected?"
+                  value={formData.guestCount}
+                  onChange={handleChange}
+                  required
                 />
-                <textarea placeholder="Leave a note for the couple" rows="4" />
-                <button type="button" className="primary-btn submit-btn">
-                  Send Your RSVP
+                <textarea
+                  name="note"
+                  placeholder="Leave a note for the couple"
+                  rows="4"
+                  value={formData.note}
+                  onChange={handleChange}
+                />
+                <button type="submit" className="primary-btn submit-btn" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending RSVP..." : "Send Your RSVP"}
                 </button>
+                {submitState.message ? (
+                  <p className={`form-message ${submitState.type}`}>{submitState.message}</p>
+                ) : null}
               </form>
               <div className="rsvp-aside">
                 <div className="rsvp-note">

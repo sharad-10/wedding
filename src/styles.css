@@ -846,6 +846,31 @@ main {
   cursor: pointer;
 }
 
+.submit-btn:disabled {
+  cursor: wait;
+  opacity: 0.82;
+}
+
+.form-message {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+}
+
+.form-message.success {
+  background: rgba(228, 245, 226, 0.92);
+  color: #205b2c;
+  border: 1px solid rgba(32, 91, 44, 0.12);
+}
+
+.form-message.error {
+  background: rgba(255, 240, 236, 0.92);
+  color: #8a3d33;
+  border: 1px solid rgba(138, 61, 51, 0.12);
+}
+
 .rsvp-aside {
   display: grid;
   gap: 1rem;
