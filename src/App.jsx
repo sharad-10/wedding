@@ -101,6 +101,19 @@ const venueAddress = "325/1, gram, Sulibardi, Nalchha, Madhya Pradesh 454010";
 const mapsUrl =
   "https://www.google.com/maps/search/?api=1&query=JMD+Resort+Mandu,+325%2F1,+gram,+Sulibardi,+Nalchha,+Madhya+Pradesh+454010";
 const rsvpEndpoint = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+const heroImage = "/img/WhatsApp Image 2026-03-23 at 23.05.52 (1).jpeg";
+const galleryImages = [
+  {
+    src: "/img/WhatsApp Image 2026-03-23 at 23.05.52 (1).jpeg",
+    title: "Together In Celebration",
+    className: "gallery-panel tall",
+  },
+  {
+    src: "/img/WhatsApp Image 2026-03-23 at 23.05.52 (2).jpeg",
+    title: "Moments Before Forever",
+    className: "gallery-panel wide",
+  },
+];
 
 const details = [
   {
@@ -368,6 +381,7 @@ export default function App() {
             <div className="date-badge">06 • 07 • 08 JULY</div>
             <div className="portrait-frame">
               <div className="portrait-glow" />
+              <img className="portrait-photo" src={heroImage} alt="Couple portrait" />
               <div className="portrait-image">
                 <div className="portrait-texture" />
               </div>
@@ -542,41 +556,35 @@ export default function App() {
             <h2>A blend of festive color, poolside fun, grand rituals, and elegant wedding nights.</h2>
           </div>
           <div className="gallery-grid">
+            {galleryImages.map((image, index) => (
+              <motion.div
+                key={image.src}
+                className={image.className}
+                variants={fadeUp}
+                custom={0.05 + index * 0.1}
+                {...revealOnScroll}
+              >
+                <img src={image.src} alt={image.title} className="gallery-photo" />
+                <div className="panel-overlay" />
+                <span>{image.title}</span>
+              </motion.div>
+            ))}
             <motion.div
-              className="gallery-panel tall"
+              className="gallery-quote glass-card"
               variants={fadeUp}
-              custom={0.05}
+              custom={0.28}
               {...revealOnScroll}
             >
-              <div className="panel-overlay" />
-              <span>Haldi Carnival</span>
+              <p className="eyebrow">Our Promise</p>
+              <h3>Two hearts, one beautiful celebration, and a lifetime of togetherness ahead.</h3>
             </motion.div>
             <motion.div
-              className="gallery-panel wide"
+              className="gallery-quote soft"
               variants={fadeUp}
-              custom={0.15}
+              custom={0.38}
               {...revealOnScroll}
             >
-              <div className="panel-overlay" />
-              <span>Sangeet Under Lights</span>
-            </motion.div>
-            <motion.div
-              className="gallery-panel"
-              variants={fadeUp}
-              custom={0.25}
-              {...revealOnScroll}
-            >
-              <div className="panel-overlay" />
-              <span>Pool Party</span>
-            </motion.div>
-            <motion.div
-              className="gallery-panel"
-              variants={fadeUp}
-              custom={0.35}
-              {...revealOnScroll}
-            >
-              <div className="panel-overlay" />
-              <span>Grand Warmala</span>
+              <p>From joyful rituals to quiet glances, every frame now carries our story.</p>
             </motion.div>
           </div>
           <div className="moment-strip">
